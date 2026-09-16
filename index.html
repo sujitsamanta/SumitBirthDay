@@ -347,15 +347,24 @@
             }
         }
 
-        .mic-status-tag {
-            font-size: 0.88rem;
+        .mic-toggle-btn {
+            background: #272230;
+            border: 1px solid var(--gold);
             color: var(--gold-light);
-            background: rgba(212, 175, 55, 0.12);
-            border: 1px dashed var(--gold);
-            padding: 0.35rem 0.9rem;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            margin-top: 0.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.25s ease;
+        }
+
+        .mic-toggle-btn:hover {
+            background: var(--gold);
+            color: #000;
         }
 
         /* ---------- scroll progress bar ---------- */
@@ -647,204 +656,6 @@
             transform: translateY(0);
         }
 
-        /* ---------- STATS ---------- */
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .stat-card {
-            background: var(--card);
-            border: 1px solid var(--card-border);
-            border-radius: 18px;
-            padding: 1.3rem 1.4rem;
-            text-align: center;
-            box-shadow: 0 12px 26px var(--shadow);
-            min-width: 135px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s;
-        }
-
-        .stat-card:hover {
-            border-color: var(--gold);
-        }
-
-        .stat-card.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stat-card .num {
-            font-family: 'Fraunces', serif;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--gold);
-        }
-
-        .stat-card .label {
-            font-size: 0.83rem;
-            color: var(--text-secondary);
-        }
-
-        /* ================= 💌 ENVELOPE WITH SLIDING LETTER ================= */
-        .envelope-section {
-            text-align: center;
-            padding: clamp(3rem, 8vw, 5rem) 1.25rem;
-        }
-
-        .envelope-container {
-            position: relative;
-            max-width: 580px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* The Animated Kham (Envelope) */
-        .envelope-wrapper {
-            position: relative;
-            width: min(320px, 86vw);
-            height: 190px;
-            background: #25202D;
-            border-radius: 14px;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 20px var(--gold-glow);
-            border: 2px solid var(--card-border);
-            cursor: pointer;
-            transition: transform 0.4s ease, border-color 0.4s ease;
-            z-index: 10;
-        }
-
-        .envelope-wrapper:hover {
-            transform: translateY(-4px) scale(1.02);
-            border-color: var(--gold);
-        }
-
-        /* Top Flap (Khule jawa angsho) */
-        .envelope-top-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 60%;
-            background: #2E2738;
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            transform-origin: top;
-            transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 15;
-            border-radius: 14px 14px 0 0;
-            border-bottom: 2px solid var(--gold);
-        }
-
-        .envelope-wrapper.open .envelope-top-flap {
-            transform: rotateX(180deg);
-            z-index: 5;
-        }
-
-        /* Front Pocket */
-        .envelope-front-pocket {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            clip-path: polygon(0 35%, 50% 70%, 100% 35%, 100% 100%, 0 100%);
-            background: #1C1724;
-            border-radius: 0 0 14px 14px;
-            z-index: 12;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        /* Golden Heart Seal */
-        .envelope-seal-badge {
-            position: absolute;
-            left: 50%;
-            top: 52%;
-            transform: translate(-50%, -50%);
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: var(--gold-metallic);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-            z-index: 16;
-            transition: opacity 0.35s ease, transform 0.35s ease;
-        }
-
-        .envelope-wrapper.open .envelope-seal-badge {
-            opacity: 0;
-            transform: translate(-50%, -80%) scale(0.5);
-        }
-
-        /* Letter Slip (Khamer moddhe theke beriye asha) */
-        .letter-paper-slip {
-            position: relative;
-            width: 100%;
-            background: var(--card);
-            border: 1.5px solid var(--gold);
-            border-radius: 20px;
-            padding: clamp(1.4rem, 4vw, 2.2rem);
-            box-shadow: 0 16px 36px var(--shadow), 0 0 25px var(--gold-glow);
-            text-align: left;
-            margin-top: -120px;
-            opacity: 0;
-            transform: translateY(60px) scale(0.85);
-            transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.85s ease;
-            z-index: 6;
-            pointer-events: none;
-        }
-
-        .envelope-wrapper.open+.letter-paper-slip {
-            opacity: 1;
-            transform: translateY(30px) scale(1);
-            margin-top: 1.5rem;
-            z-index: 25;
-            pointer-events: auto;
-        }
-
-        .letter-paper-slip h2 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 1.2rem;
-            background: var(--gold-metallic);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        #letterText {
-            font-size: clamp(0.95rem, 2.6vw, 1.06rem);
-            white-space: pre-wrap;
-            min-height: 160px;
-            color: var(--text-primary);
-        }
-
-        #letterText .cursor {
-            display: inline-block;
-            width: 2px;
-            background: var(--gold);
-            box-shadow: 0 0 5px var(--gold);
-            animation: blink 0.9s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .letter-sign {
-            text-align: right;
-            margin-top: 1.2rem;
-            font-family: 'Fraunces', serif;
-            font-style: italic;
-            color: var(--gold);
-        }
-
         /* ---------- TIMELINE ---------- */
         .timeline {
             position: relative;
@@ -1065,7 +876,7 @@
             box-shadow: 0 0 6px var(--gold);
         }
 
-        /* ---------- GALLERY ---------- */
+        /* ---------- GALLERY (SUPER ENLARGED HOVER ANIMATION) ---------- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -1168,6 +979,158 @@
             .g-item-outer:hover .g-item-inner:not(.flipped) {
                 transform: scale(1.3) translateY(-12px);
             }
+        }
+
+        /* ================= 💌 ENVELOPE WITH SLIDING LETTER ================= */
+        .envelope-section {
+            text-align: center;
+            padding: clamp(3rem, 8vw, 5rem) 1.25rem;
+        }
+
+        .envelope-container {
+            position: relative;
+            max-width: 580px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: min(320px, 86vw);
+            height: 190px;
+            background: #25202D;
+            border-radius: 14px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 20px var(--gold-glow);
+            border: 2px solid var(--card-border);
+            cursor: pointer;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            z-index: 10;
+        }
+
+        .envelope-wrapper:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--gold);
+        }
+
+        .envelope-top-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: #2E2738;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top;
+            transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 15;
+            border-radius: 14px 14px 0 0;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .envelope-wrapper.open .envelope-top-flap {
+            transform: rotateX(180deg);
+            z-index: 5;
+        }
+
+        .envelope-front-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 35%, 50% 70%, 100% 35%, 100% 100%, 0 100%);
+            background: #1C1724;
+            border-radius: 0 0 14px 14px;
+            z-index: 12;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .envelope-seal-badge {
+            position: absolute;
+            left: 50%;
+            top: 52%;
+            transform: translate(-50%, -50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--gold-metallic);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            z-index: 16;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .envelope-wrapper.open .envelope-seal-badge {
+            opacity: 0;
+            transform: translate(-50%, -80%) scale(0.5);
+        }
+
+        .letter-paper-slip {
+            position: relative;
+            width: 100%;
+            background: var(--card);
+            border: 1.5px solid var(--gold);
+            border-radius: 20px;
+            padding: clamp(1.4rem, 4vw, 2.2rem);
+            box-shadow: 0 16px 36px var(--shadow), 0 0 25px var(--gold-glow);
+            text-align: left;
+            margin-top: -120px;
+            opacity: 0;
+            transform: translateY(60px) scale(0.85);
+            transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.85s ease;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .envelope-wrapper.open+.letter-paper-slip {
+            opacity: 1;
+            transform: translateY(30px) scale(1);
+            margin-top: 1.5rem;
+            z-index: 25;
+            pointer-events: auto;
+        }
+
+        .letter-paper-slip h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.2rem;
+            background: var(--gold-metallic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #letterText {
+            font-size: clamp(0.95rem, 2.6vw, 1.06rem);
+            white-space: pre-wrap;
+            min-height: 160px;
+            color: var(--text-primary);
+        }
+
+        #letterText .cursor {
+            display: inline-block;
+            width: 2px;
+            background: var(--gold);
+            box-shadow: 0 0 5px var(--gold);
+            animation: blink 0.9s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .letter-sign {
+            text-align: right;
+            margin-top: 1.2rem;
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            color: var(--gold);
         }
 
         /* ---------- PUZZLE ---------- */
@@ -1319,6 +1282,47 @@
         input[type=range].meter {
             width: 100%;
             accent-color: var(--gold);
+        }
+
+        /* ---------- STATS ---------- */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 1.3rem 1.4rem;
+            text-align: center;
+            box-shadow: 0 12px 26px var(--shadow);
+            min-width: 135px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--gold);
+        }
+
+        .stat-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-card .num {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--gold);
+        }
+
+        .stat-card .label {
+            font-size: 0.83rem;
+            color: var(--text-secondary);
         }
 
         /* ---------- FLOATING MUSIC BUTTON & POPUP PLAYER ---------- */
@@ -1660,21 +1664,21 @@
     <div class="welcome-overlay" id="welcomeOverlay">
         <div class="welcome-card">
 
-            <!-- STEP 1: Gift Box (Auto mic permission requested here) -->
+            <!-- STEP 1: Gift Box -->
             <div id="stepGiftBox">
                 <div class="gift-icon">🎁</div>
                 <h2>Special Gift For You!</h2>
-                <p>Tap below to unwrap your birthday surprise & enable audio ✨</p>
+                <p>Tap below to unwrap your birthday surprise ✨</p>
                 <button class="welcome-btn" id="openGiftBoxBtn">Open My Gift ✨</button>
             </div>
 
             <!-- STEP 2: Large 3D Birthday Cake & Candle -->
             <div id="stepCake" class="step-cake">
                 <h2>Make a Wish! 🎂</h2>
-                <p>Blow directly into your mic or tap the candle flame to blow it out ✨</p>
+                <p>Blow candle or tap the flame to blow it out ✨</p>
 
                 <div class="cake-container">
-                    <div class="cake-stage" id="popupCakeStage" title="Blow mic or tap flame to blow!">
+                    <div class="cake-stage" id="popupCakeStage" title="Tap flame or blow mic to extinguish!">
                         <div class="cake-plate"></div>
                         <div class="cake-tier-bottom">
                             <div class="tier-drip"></div>
@@ -1690,7 +1694,10 @@
                     </div>
                 </div>
 
-                <div class="mic-status-tag" id="micStatusTag">🎙️ Mic listening... blow now! 🌬️</div>
+                <div>
+                    <button class="mic-toggle-btn" id="popupMicBtn">🎙️ Blow with Mic (Optional)</button>
+                </div>
+                <div class="mic-status-tag" id="micStatusTag">👉 Tap the flame directly or enable mic!</div>
             </div>
 
         </div>
@@ -1699,7 +1706,7 @@
     <div class="progress-bar" id="progressBar"></div>
     <div class="petal-field" id="petalField"></div>
 
-    <!-- ================= 1. HERO ================= -->
+    <!-- ================= HERO ================= -->
     <section class="hero">
         <div class="hero-dp-wrap" id="heroDpWrap">
             <div class="hero-dp-ring" id="heroDpRing" title="Click to view full photo">
@@ -1716,7 +1723,7 @@
         <div class="scroll-hint"><span class="dot"></span>Scroll down</div>
     </section>
 
-    <!-- ================= 2. STATS (THE MATH OF OUR FRIENDSHIP) ================= -->
+    <!-- ================= STATS ================= -->
     <section id="statsSection">
         <div class="section-head reveal">
             <h2>The math of our friendship</h2>
@@ -1725,31 +1732,7 @@
         <div class="stats" id="statsBox"></div>
     </section>
 
-    <!-- ================= 3. 💌 ENVELOPE (KHAM) & LETTER SECTION (RIGHT AFTER STATS) ================= -->
-    <section class="envelope-section" id="envelopeSection">
-        <div class="section-head reveal">
-            <h2>A letter for you</h2>
-            <p>Tap the envelope to unseal and read my personal letter.</p>
-        </div>
-
-        <div class="envelope-container reveal">
-            <!-- The Envelope (Kham) -->
-            <div class="envelope-wrapper" id="envelopeBox" role="button" tabindex="0" title="Click to open the letter">
-                <div class="envelope-top-flap"></div>
-                <div class="envelope-seal-badge">💌</div>
-                <div class="envelope-front-pocket"></div>
-            </div>
-
-            <!-- The Letter (Kham theke slide hoye beriye asha paper) -->
-            <div class="letter-paper-slip" id="letterPaperSlip">
-                <h2>A Letter For You 📜</h2>
-                <div id="letterText"></div>
-                <div class="letter-sign" id="letterSign">— Your friend Sujit</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= 4. TIMELINE ================= -->
+    <!-- ================= TIMELINE ================= -->
     <section id="timelineSection">
         <div class="section-head reveal">
             <h2>Our moments</h2>
@@ -1758,7 +1741,7 @@
         <div class="timeline" id="timelineBox"></div>
     </section>
 
-    <!-- ================= 5. 3D FAVORITES CAROUSEL ================= -->
+    <!-- ================= 3D FAVORITES CAROUSEL ================= -->
     <section id="carouselSection">
         <div class="section-head reveal">
             <h2>Spin through our favourites</h2>
@@ -1774,7 +1757,7 @@
         </div>
     </section>
 
-    <!-- ================= 6. GALLERY ================= -->
+    <!-- ================= GALLERY ================= -->
     <section id="gallerySection">
         <div class="section-head reveal">
             <h2>The photo basket</h2>
@@ -1783,7 +1766,7 @@
         <div class="gallery-grid" id="galleryBox"></div>
     </section>
 
-    <!-- ================= 7. SLIDING PUZZLE ================= -->
+    <!-- ================= SLIDING PUZZLE ================= -->
     <section id="puzzleSection">
         <div class="section-head reveal">
             <h2>Solve to unlock a message</h2>
@@ -1800,7 +1783,7 @@
         </div>
     </section>
 
-    <!-- ================= 8. FUN ZONE ================= -->
+    <!-- ================= FUN ZONE ================= -->
     <section id="funSection">
         <div class="section-head reveal">
             <h2>Need a laugh?</h2>
@@ -1813,6 +1796,30 @@
             <div class="meter-wrap">
                 <div class="meter-label" id="meterLabel">Friendship-o-meter: drag it</div>
                 <input type="range" min="0" max="100" value="50" class="meter" id="meterSlider">
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 💌 ENVELOPE (KHAM) WITH SLIDING LETTER ================= -->
+    <section class="envelope-section" id="envelopeSection">
+        <div class="section-head reveal">
+            <h2>A letter for you</h2>
+            <p>Tap the envelope below to unseal and read my personal letter.</p>
+        </div>
+
+        <div class="envelope-container reveal">
+            <!-- The Envelope (Kham) -->
+            <div class="envelope-wrapper" id="envelopeBox" role="button" tabindex="0" title="Click to open the letter">
+                <div class="envelope-top-flap"></div>
+                <div class="envelope-seal-badge">💌</div>
+                <div class="envelope-front-pocket"></div>
+            </div>
+
+            <!-- The Letter (Khamer moddhe theke beriye asha paper) -->
+            <div class="letter-paper-slip" id="letterPaperSlip">
+                <h2>A Letter For You 📜</h2>
+                <div id="letterText"></div>
+                <div class="letter-sign" id="letterSign">— Your friend Sujit</div>
             </div>
         </div>
     </section>
@@ -1874,7 +1881,7 @@
             friendshipStartDate: "2020-01-01",
 
             // 📸 FRIEND'S DP / PROFILE PICTURE:
-            friendPhoto: "IMG_20251019_201837852_HDR_PORTRAIT.jpg",
+            friendPhoto: "PXL_20221222_171121895.PORTRAIT.jpg",
 
             // 🎶 ADD YOUR SONGS HERE:
             songs: [
@@ -2058,52 +2065,6 @@ Sending you so much love and golden wishes on your birthday.
             el.addEventListener('pointerleave', () => { el.style.transform = ''; });
         }
 
-        // ================= 💌 ENVELOPE (KHAM) OPEN & SLIDE LETTER =================
-        const envelopeBox = document.getElementById('envelopeBox');
-        const letterFull = CONFIG.letter.replace("{{friendName}}", CONFIG.friendName);
-        const letterEl = document.getElementById('letterText');
-        let envelopeOpened = false;
-        let letterTyped = false;
-
-        function typeLetter() {
-            if (letterTyped) return;
-            letterTyped = true;
-            let i = 0;
-            letterEl.innerHTML = '';
-            const cursor = document.createElement('span');
-            cursor.className = 'cursor';
-            cursor.textContent = '\u00A0';
-            function step() {
-                if (i <= letterFull.length) {
-                    letterEl.textContent = letterFull.slice(0, i);
-                    letterEl.appendChild(cursor);
-                    i += 2;
-                    setTimeout(() => requestAnimationFrame(step), 16);
-                } else {
-                    cursor.remove();
-                }
-            }
-            step();
-        }
-
-        function openEnvelopeAndReadLetter() {
-            if (!envelopeOpened) {
-                envelopeOpened = true;
-                envelopeBox.classList.add('open');
-                launchConfetti();
-                setTimeout(() => {
-                    typeLetter();
-                }, 400);
-            }
-        }
-
-        envelopeBox.addEventListener('click', openEnvelopeAndReadLetter);
-        envelopeBox.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                openEnvelopeAndReadLetter();
-            }
-        });
-
         // ---- timeline ----
         function photoBoxHTML(img, altText) {
             if (img) return `<img src="${img}" alt="${altText}" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;margin-bottom:0.8rem;cursor:pointer;border:1px solid rgba(212,175,55,0.25);" data-lightbox-src="${img}">`;
@@ -2205,6 +2166,53 @@ Sending you so much love and golden wishes on your birthday.
         document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('show'));
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('show'); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lightbox.classList.remove('show'); });
+
+        // ---- letter typewriter engine ----
+        const letterFull = CONFIG.letter.replace("{{friendName}}", CONFIG.friendName);
+        const letterEl = document.getElementById('letterText');
+        let letterTyped = false;
+        function typeLetter() {
+            if (letterTyped) return;
+            letterTyped = true;
+            let i = 0;
+            letterEl.innerHTML = '';
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            cursor.textContent = '\u00A0';
+            function step() {
+                if (i <= letterFull.length) {
+                    letterEl.textContent = letterFull.slice(0, i);
+                    letterEl.appendChild(cursor);
+                    i += 2;
+                    setTimeout(() => requestAnimationFrame(step), 16);
+                } else {
+                    cursor.remove();
+                }
+            }
+            step();
+        }
+
+        // ================= 💌 ENVELOPE (KHAM) OPEN & SLIDE LETTER =================
+        const envelopeBox = document.getElementById('envelopeBox');
+        let envelopeOpened = false;
+
+        function openEnvelopeAndReadLetter() {
+            if (!envelopeOpened) {
+                envelopeOpened = true;
+                envelopeBox.classList.add('open');
+                launchConfetti();
+                setTimeout(() => {
+                    typeLetter();
+                }, 400);
+            }
+        }
+
+        envelopeBox.addEventListener('click', openEnvelopeAndReadLetter);
+        envelopeBox.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                openEnvelopeAndReadLetter();
+            }
+        });
 
         // ---- sliding puzzle ----
         const puzzleGrid = document.getElementById('puzzleGrid');
@@ -2406,12 +2414,14 @@ Sending you so much love and golden wishes on your birthday.
         const popupCakeStage = document.getElementById('popupCakeStage');
         const popupCandleFlame = document.getElementById('popupCandleFlame');
         const popupCandleSmoke = document.getElementById('popupCandleSmoke');
+        const popupMicBtn = document.getElementById('popupMicBtn');
         const micStatusTag = document.getElementById('micStatusTag');
 
         let currentTrackIdx = 0;
         let isPlaying = false;
         let candleExtinguished = false;
         let micStream = null;
+        let micAudioCtx = null;
 
         function initPlaylist() {
             if (!CONFIG.songs || CONFIG.songs.length === 0) return;
@@ -2536,64 +2546,49 @@ Sending you so much love and golden wishes on your birthday.
         }
 
         // ================================================================
-        // SEQUENCE: STEP 1 (GIFT + AUTO MIC) -> STEP 2 (CAKE BLOW) -> REVEAL
+        // SEQUENCE: STEP 1 (GIFT) -> STEP 2 (CAKE BLOW) -> MAIN SPEAKER PLAY
         // ================================================================
 
-        async function startMicDetection() {
-            try {
-                micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const mic = audioCtx.createMediaStreamSource(micStream);
-                const analyser = audioCtx.createAnalyser();
-                analyser.fftSize = 512;
-                mic.connect(analyser);
-
-                const dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-                function detectBlow() {
-                    if (candleExtinguished) {
-                        if (micStream) micStream.getTracks().forEach(t => t.stop());
-                        return;
-                    }
-                    analyser.getByteFrequencyData(dataArray);
-                    let sum = 0;
-                    for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
-                    let avg = sum / dataArray.length;
-
-                    if (avg > 48) {
-                        blowCandleAndReveal();
-                        if (micStream) micStream.getTracks().forEach(t => t.stop());
-                        return;
-                    }
-                    requestAnimationFrame(detectBlow);
-                }
-                detectBlow();
-            } catch (e) {
-                console.log('Mic permission ignored/denied; user can tap flame instead.');
-                if (micStatusTag) micStatusTag.textContent = '🕯️ Tap the candle flame to blow!';
-            }
-        }
-
-        // 1. First Click: Request Mic Permission immediately & Open Cake Step
-        openGiftBoxBtn.addEventListener('click', async () => {
-            startMicDetection();
+        // 1. When Gift Box button is clicked: Transition to Cake Stage (WITHOUT touching Mic!)
+        openGiftBoxBtn.addEventListener('click', () => {
             stepGiftBox.style.display = 'none';
             stepCake.style.display = 'block';
             launchConfetti();
         });
+
+        // Clean up mic so phone leaves Call Mode and returns to Loudspeaker
+        function releaseMicrophone() {
+            if (micStream) {
+                micStream.getTracks().forEach(track => track.stop());
+                micStream = null;
+            }
+            if (micAudioCtx) {
+                micAudioCtx.close();
+                micAudioCtx = null;
+            }
+        }
 
         // 2. Extinguish Candle function
         function blowCandleAndReveal() {
             if (candleExtinguished) return;
             candleExtinguished = true;
 
+            // Completely stop and clean up mic stream so phone returns to Loudspeaker!
+            releaseMicrophone();
+
+            // Flame off, smoke on
             popupCandleFlame.style.opacity = '0';
             popupCandleFlame.style.transform = 'translateX(-50%) scale(0)';
             popupCandleSmoke.classList.add('rise');
 
+            // Play sounds & huge celebration
             playCelebrationWhistle();
             launchConfetti();
-            playTrack();
+
+            // Small delay to let mobile audio system switch back to media speaker
+            setTimeout(() => {
+                playTrack(); // Start background music on MAIN LOUDSPEAKER!
+            }, 300);
 
             setTimeout(() => {
                 welcomeOverlay.classList.add('hidden');
@@ -2601,7 +2596,44 @@ Sending you so much love and golden wishes on your birthday.
             }, 1200);
         }
 
+        // Tap candle/cake to blow directly
         popupCakeStage.addEventListener('click', blowCandleAndReveal);
+
+        // Optional Mic Button on Cake Stage
+        popupMicBtn.addEventListener('click', async () => {
+            if (micStream) return;
+            try {
+                micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                popupMicBtn.textContent = '🌬️ Listening... Blow on your mic now!';
+                popupMicBtn.style.borderColor = '#FFD700';
+                micStatusTag.textContent = '🌬️ Blow hard on the microphone!';
+
+                micAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const mic = micAudioCtx.createMediaStreamSource(micStream);
+                const analyser = micAudioCtx.createAnalyser();
+                analyser.fftSize = 512;
+                mic.connect(analyser);
+
+                const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+                function detectBlow() {
+                    if (candleExtinguished) return;
+                    analyser.getByteFrequencyData(dataArray);
+                    let sum = 0;
+                    for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
+                    let avg = sum / dataArray.length;
+
+                    if (avg > 48) {
+                        blowCandleAndReveal();
+                        return;
+                    }
+                    requestAnimationFrame(detectBlow);
+                }
+                detectBlow();
+            } catch (e) {
+                alert('Microphone permission cancelled. Simply tap the candle flame to blow it out! 🕯️');
+            }
+        });
 
         // ---- secret Konami-code easter egg ----
         const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
